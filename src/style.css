@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1rem;
+  font-weight: 100;
+  padding: 10px 10px;
+}
+
+.add-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-todo-input {
+  height: 8vh;
+  width: 300px;
+  font-size: 1rem;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 0;
+}
+
+.clear-all {
+  max-width: 768px;
+  margin: 0 auto;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.clear-all-completed {
+  width: 100%;
+  height: 8vh;
+  border: 0;
+  font-size: 1rem;
+  color: darkgray;
+  cursor: pointer;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(0 0 0 / 0.2);
+}
+
+.left-side {
+  display: flex;
+  padding: 10px 10px;
+  gap: 10px;
+}
+
+.trash-can {
+  display: none;
+}
+
+.curve-left {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(90deg);
+}
