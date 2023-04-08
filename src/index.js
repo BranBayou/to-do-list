@@ -4,6 +4,9 @@ import {
 } from './modules/renderer.js';
 
 let todoList = [];
+const toLocalStorage = () => {
+  localStorage.setItem('todoList', JSON.stringify(todoList));
+};
 
 const addTodo = document.getElementById('add-btn');
 const textInput = document.getElementById('todo-input');
@@ -21,16 +24,19 @@ textInput.addEventListener('keydown', (event) => {
 addTodo.addEventListener('click', (event) => {
   event.preventDefault();
   todoAdder(todoList, textInput, renderTodo, clearSelected);
+  toLocalStorage();
 });
 
 clearSelected.addEventListener('click', () => {
   todoList = todoList.filter((element) => element.completed !== true);
   renderTodo(todoList, clearSelected, dragger, todoFilter);
+  toLocalStorage();
 });
 
 refresh.addEventListener('click', () => {
   todoList = [];
   renderTodo(todoList, clearSelected, dragger, todoFilter);
+  toLocalStorage();
 });
 window.addEventListener('DOMContentLoaded', () => {
   renderTodo(todoList, clearSelected, dragger, todoFilter);
