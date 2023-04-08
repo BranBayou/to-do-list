@@ -59,7 +59,7 @@ const renderTodos = () => {
     // Function to handle delete action
     const handleDelete = (index) => {
       todos.splice(index, 1);
-      for(let i = 0; i < todos.length; i++) {
+      for (let i = 0; i < todos.length; i += 1) {
         todos[i].index = i + 1;
       }
       toLocalStorage();
