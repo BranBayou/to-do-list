@@ -1,81 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+:root {
+  --container-height: fit-content;
+  --contaier-width: 400px;
+  --header-height: 150px;
+}
+
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
+  font-family: "Ubuntu", monospace;
+}
+
+html {
+  font-size: 20px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
+  background-color: rgb(242, 245, 240);
   max-width: 768px;
-  margin: 0 auto;
-  padding: 0 15px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  height: var(--container-height);
+  max-height: 80vh;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-header .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 9vh;
-  border-bottom: 1px solid gray;
-}
-
-header .header h1 {
-  font-size: 1.5rem;
-  font-weight: 100;
-}
-
-.clear-section {
-  max-width: 768px;
-  margin: 0 auto;
-}
-
-.clear-section button {
+header {
   width: 100%;
-  height: 8vh;
-  border: none;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  font-size: 1rem;
+  height: var(--header-height);
+  background-size: cover;
+  border-radius: 5px 5px 0 0;
 }
 
-header .header button {
-  height: 25px;
-  width: 25px;
-}
-
-header #todoform {
+.header {
+  width: 100%;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 8vh;
-  border-bottom: 1px solid gray;
+  justify-content: space-between;
+  color: #5a5459;
+  font-weight: 900;
+  margin-left: 10px;
+  border-bottom: 2px solid #fff;
 }
 
-header #todoform button {
-  height: 25px;
-  width: 25px;
+.fresher {
+  margin-right: 30px;
 }
 
-header #todoform input {
-  height: 100%;
+.add-todo {
+  width: 100%;
+  height: 50px;
+  padding: 0.25rem 0;
+}
+
+.add-todo form {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #fff;
+}
+
+.add-todo form input {
+  flex: 1;
+  height: 30px;
+  background-color: transparent;
   border: none;
-  width: 50%;
+  border-right: 0;
+  outline: transparent;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  color: #5a5459;
+}
+
+.add-todo form input:focus {
+  border: 5px white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.add-btn {
+  width: 60px;
+  height: 50px;
+  font-size: 1rem;
+  background-color: transparent;
+  color: rgb(143, 143, 143);
+  border: none;
+  border-left: 0;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  border: 1px solid gray;
+}
+
+.chk-todo {
+  display: flex;
+}
+
+.list-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid white;
+}
+
+i {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.delicon:hover {
+  cursor: pointer;
+  background-color: tomato;
+}
+
+.drag:hover {
+  cursor: move;
 }
 
 .todo {
+  all: unset;
+  color: #5a5459;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  height: 7vh;
-  border-bottom: 1px solid gray;
+  padding: 0.75rem 0.5rem;
+  border-radius: 5px;
 }
 
-.todo .left-side {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+#todo-list {
+  height: calc(var(--container-height) - var(--header-height));
+  background-color: rgb(242, 245, 240);
+  padding: 0.5rem;
+  border-radius: 0 0 5px 5px;
+  width: 100%;
 }
 
-#checkbox:checked + .task-input-field {
-  text-decoration: line-through;
-  color: grey;
+.bi .bi-circle {
+  color: gray;
+}
+
+.clearChecked {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.clearChecked:hover {
+  text-decoration: underline;
 }
