@@ -1,36 +1,64 @@
+import _ from 'lodash';
 import './style.css';
 
-const todoList = document.getElementById('todo-lists');
+const form = document.getElementById('todoform');
+const todoInput = document.getElementById('newtodo');
+const todosListEl = document.getElementById('todos-list');
 
-const listArray = [
-  {
-    description: 'wash the dishes',
-    completed: true,
-    index: 1,
-  }, {
-    description: 'complete To Do list project',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'wash my car',
-    completed: true,
-    index: 3,
-  },
-];
-const showTasks = (task) => {
-  listArray.sort((a, b) => a.index - b.index);
-  todoList.innerHTML += `<div class="todo" id="todo-con">
-                          <div class="left-side">
-                            <input type="checkbox" id="todo" name="todo" value="">
-                            <p>${listArray[task].description}</p>
-                          </div>
-                          <div class="right-side">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                            <i class="fa-regular fa-trash-can trash-can"></i>
-                          </div>
-                        </div>`;
+let todos = [];
+const toLocalStorage = () => {
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
-for (let i = 0; i < listArray.length; i += 1) {
-  showTasks(i);
-}
+
+form.addEventListener('submit',(event) => {
+  event.preventDefault();
+  saveTodo();
+  renderTodos();
+  toLocalStorage();
+});
+
+let saveTodo = () => {
+  const todoValue = todoInput.value;
+  const isEmpty = todoValue === '';
+  if (isEmpty) {
+    alert('Empty todo');
+  }else{
+    const todo = {
+      description: todoValue,
+      completed: false,
+      index: todos.length,
+    };
+    todos.push(todo);
+    todoInput.value = '';
+  }
+};
+
+let renderTodos = () => {
+
+  todosListEl.innerHTML = '';
+  if(todos){
+    todos.forEach((todo,index) => {
+      todosListEl.innerHTML += `
+      <div class="todo" id="${index}">
+        <div class="left-side">
+          <input type="checkbox" id="checkbox" class="checkbox">
+          <p class="task-input-field">${todo.description}</p>
+        </div>
+        <div class="right-side">
+          <i class="bi bi-three-dots-vertical edit"></i>
+          <i class="bi bi-trash delete"></i>
+        </div>
+      </div>
+      `;
+    });
+  };
+  }
+  
+
+const editIcon = document.getElementsByClassName('edit');
+const deleteIcon = document.getElementsByClassName('delete');
+const taskInputField = document.getElementsByClassName('task-input-field');
+const taskChiled = document.getElementsByClassName('todo');
+
+
+
