@@ -4,6 +4,7 @@ import {
 } from './modules/renderer.js';
 
 let todoList = [];
+// local storage
 const toLocalStorage = () => {
   localStorage.setItem('todoList', JSON.stringify(todoList));
 };
