@@ -72,6 +72,7 @@ const renderTodos = () => {
       });
     }
 
+
     clearBtn.addEventListener('click', () => {
       todos.splice(0, todos.length);
       toLocalStorage();
@@ -94,6 +95,24 @@ const renderTodos = () => {
         toLocalStorage();
       });
     });
+    todos.forEach((todo,index) => {
+      const checkBox = document.getElementById(`checkbox${index + 1}`);
+    if (todos[index].completed === true) {
+      checkBox.checked = true;
+    } else {
+      checkBox.checked = false;
+    }
+    checkBox.addEventListener('change', (event) => {
+      if (event.currentTarget.checked) {
+        todos[index].completed = true;
+      } else {
+        todos[index].completed = false;
+      }
+      toLocalStorage();
+      console.log(todos);
+    });
+    })
+
   }
 };
 
