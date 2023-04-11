@@ -10,12 +10,13 @@ const toLocalStorage = () => {
 
 const renderTodos = () => {
   todosListEl.innerHTML = '';
+
   if (todos) {
     todos.forEach((todo, index) => {
       todosListEl.innerHTML += `
       <div class="todo" id="${index}">
         <div class="left-side">
-          <input type="checkbox" id="checkbox" class="checkbox">
+          <input type="checkbox" id="checkbox${todo.index}" class="checkbox${todo.index}">
           <p class="task-input-field">${todo.description}</p>
         </div>
         <div class="right-side">
@@ -72,6 +73,24 @@ const renderTodos = () => {
         handleDelete(i);
       });
     }
+
+    todos.forEach((todo,index) => {
+      const checkBox = document.getElementById(`checkbox${index + 1}`);
+    if (todos[index].completed === true) {
+      checkBox.checked = true;
+    } else {
+      checkBox.checked = false;
+    }
+    checkBox.addEventListener('change', (event) => {
+      if (event.currentTarget.checked) {
+        todos[index].completed = true;
+      } else {
+        todos[index].completed = false;
+      }
+      toLocalStorage();
+      console.log(todos);
+    });
+    })
   }
 };
 
