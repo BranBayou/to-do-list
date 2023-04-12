@@ -1,8 +1,8 @@
 import './style.css';
+import {
+  form, todoInput, todosListEl, clearBtn,
+} from './modules/localStr.js';
 
-const form = document.getElementById('todoform');
-const todoInput = document.getElementById('newtodo');
-const todosListEl = document.getElementById('todos-list');
 let todos = [];
 const toLocalStorage = () => {
   localStorage.setItem('todos', JSON.stringify(todos));
@@ -10,7 +10,6 @@ const toLocalStorage = () => {
 
 const renderTodos = () => {
   todosListEl.innerHTML = '';
-
   if (todos) {
     todos.forEach((todo, index) => {
       todosListEl.innerHTML += `
@@ -74,23 +73,28 @@ const renderTodos = () => {
       });
     }
 
-    todos.forEach((todo,index) => {
-      const checkBox = document.getElementById(`checkbox${index + 1}`);
-    if (todos[index].completed === true) {
-      checkBox.checked = true;
-    } else {
-      checkBox.checked = false;
-    }
-    checkBox.addEventListener('change', (event) => {
-      if (event.currentTarget.checked) {
-        todos[index].completed = true;
-      } else {
-        todos[index].completed = false;
-      }
+    clearBtn.addEventListener('click', () => {
+      todos.splice(0, todos.length);
       toLocalStorage();
-      console.log(todos);
+      renderTodos();
     });
-    })
+
+    todos.forEach((todo, index) => {
+      const checkBox = document.getElementById(`checkbox${index + 1}`);
+      if (todos[index].completed === true) {
+        checkBox.checked = true;
+      } else {
+        checkBox.checked = false;
+      }
+      checkBox.addEventListener('change', (event) => {
+        if (event.currentTarget.checked) {
+          todos[index].completed = true;
+        } else {
+          todos[index].completed = false;
+        }
+        toLocalStorage();
+      });
+    });
   }
 };
 
