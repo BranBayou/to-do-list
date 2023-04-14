@@ -87,8 +87,10 @@ const renderTodos = () => {
         checkBox.checked = false;
       }
       checkBox.addEventListener('change', (event) => {
+        const description = document.querySelector('.task-input-field');
         if (event.currentTarget.checked) {
           todos[index].completed = true;
+          description.style.textDeccoration="line-through";
         } else {
           todos[index].completed = false;
         }
